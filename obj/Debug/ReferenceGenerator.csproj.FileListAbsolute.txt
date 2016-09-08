@@ -1,1 +1,10 @@
 D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\bin\Debug\ReferenceGenerator.exe.config
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\bin\Debug\ReferenceGenerator.exe
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\bin\Debug\ReferenceGenerator.pdb
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\bin\Debug\System.Data.SQLite.dll
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\bin\Debug\System.Data.SQLite.xml
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\Debug\ReferenceGenerator.csprojResolveAssemblyReference.cache
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\Debug\ReferenceGenerator.Properties.Resources.resources
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\Debug\ReferenceGenerator.csproj.GenerateResource.Cache
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\Debug\ReferenceGenerator.exe
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\Debug\ReferenceGenerator.pdb
