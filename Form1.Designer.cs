@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.output = new System.Windows.Forms.TextBox();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pubisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +39,9 @@
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.url = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.authors = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.output = new System.Windows.Forms.TextBox();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,14 +66,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(1094, 234);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // output
-            // 
-            this.output.Location = new System.Drawing.Point(12, 325);
-            this.output.Multiline = true;
-            this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(1090, 226);
-            this.output.TabIndex = 1;
             // 
             // name
             // 
@@ -134,6 +127,14 @@
             this.authors.Name = "authors";
             this.authors.ReadOnly = true;
             // 
+            // output
+            // 
+            this.output.Location = new System.Drawing.Point(12, 325);
+            this.output.Multiline = true;
+            this.output.Name = "output";
+            this.output.Size = new System.Drawing.Size(1090, 226);
+            this.output.TabIndex = 1;
+            // 
             // buttonAdd
             // 
             this.buttonAdd.Location = new System.Drawing.Point(16, 281);
@@ -144,16 +145,27 @@
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(130, 281);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(91, 38);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "EDIT";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1118, 577);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.output);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "b";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -175,6 +187,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn authors;
         private System.Windows.Forms.TextBox output;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button button1;
     }
 }
 

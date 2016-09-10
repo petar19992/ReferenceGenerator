@@ -65,6 +65,7 @@
             this.ok.TabIndex = 0;
             this.ok.Text = "OK";
             this.ok.UseVisualStyleBackColor = true;
+            this.ok.Click += new System.EventHandler(this.ok_Click);
             // 
             // cancel
             // 
@@ -147,6 +148,7 @@
             this.site.TabStop = true;
             this.site.Text = "Site";
             this.site.UseVisualStyleBackColor = true;
+            this.site.CheckedChanged += new System.EventHandler(this.site_CheckedChanged);
             // 
             // journal
             // 
@@ -158,6 +160,7 @@
             this.journal.TabStop = true;
             this.journal.Text = "Journal";
             this.journal.UseVisualStyleBackColor = true;
+            this.journal.CheckedChanged += new System.EventHandler(this.journal_CheckedChanged);
             // 
             // book
             // 
@@ -169,6 +172,7 @@
             this.book.TabStop = true;
             this.book.Text = "Book";
             this.book.UseVisualStyleBackColor = true;
+            this.book.CheckedChanged += new System.EventHandler(this.book_CheckedChanged);
             // 
             // pp2
             // 

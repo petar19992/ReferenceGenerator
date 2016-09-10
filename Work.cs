@@ -6,25 +6,30 @@ using System.Threading.Tasks;
 
 namespace ReferenceGenerator
 {
-    class Work
+    public class Work
     {
-        private int ID;
-        private String name;
-        private String publisher;
-        private String release;
-        private int vol;
-        private int no;
-        private String pp1;
-        private String pp2;
-        private String type;
-        private String url;
+        public int ID;
+        public String name;
+        public String publisher;
+        public String release;
+        public String location;
+        public int vol;
+        public int no;
+        public String pp1;
+        public String pp2;
+        public String type;
+        public String url;
 
-        public Work(int id, String n, String p, String r, int v, int no ,String p1, String p2, String t, String u)
+        public Work()
+        { }
+
+        public Work(int id, String n, String p, String r, String location, int v, int no ,String p1, String p2, String t, String u)
         {
             this.ID = id;
             this.name = n;
             this.publisher = p;
             this.release = r;
+            this.location = location;
             this.vol = v;
             this.no = no;
             this.pp1 = p1;
