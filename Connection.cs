@@ -11,6 +11,7 @@ namespace ReferenceGenerator
     class Connection
     {
         public Form1 form1;
+        public WorkPreview workPreview;
         public void refreshForm1()
         {
             if (form1 != null)
@@ -27,26 +28,53 @@ namespace ReferenceGenerator
         private Connection()
         {
             sqlite = new SQLiteConnection("Data Source=reference.db");
-                
-                ////SQLiteCommand comm = new SQLiteCommand("select * from WORK;", sqlite);
+
+            ////SQLiteCommand comm = new SQLiteCommand("select * from WORK;", sqlite);
             ////SQLiteDataReader dr= comm.ExecuteReader();
             ////while (dr.Read())
             ////{
             ////    Console.WriteLine(dr[0]);
             ////}
         }
+
+        public void delete(Work w)
+        {
+            if (w != null)
+            {
+                SQLiteCommand comand;
+                comand = new SQLiteCommand("DELETE from WORK WHERE WORK_ID=" + w.ID + ";", sqlite);
+                comand.ExecuteNonQuery();
+                refreshForm1();
+            }
+        }
         public void addOrEditWork(Work w)
         {
-            
+
             SQLiteCommand comand;
-            if(w.ID!=0)
-                comand = new SQLiteCommand("update WORK set NAME='" + w.name + "',PUBLISHER='" + w.publisher + "',LOCATION='" + w.location + "',VOL=" + w.vol + ",NO=" + w.no + ",PP1='" + w.pp1 + "',PP2='" + w.pp2 + "',TYPE='" + w.type + "',URL='" + w.url + "' WHERE WORK_ID="+w.ID+";", sqlite);
+            if (w.ID != 0)
+                comand = new SQLiteCommand("update WORK set NAME='" + w.name + "',PUBLISHER='" + w.publisher + "',LOCATION='" + w.location + "',VOL=" + w.vol + ",NO=" + w.no + ",PP1='" + w.pp1 + "',PP2='" + w.pp2 + "',TYPE='" + w.type + "',URL='" + w.url + "' WHERE WORK_ID=" + w.ID + ";", sqlite);
             else
-                comand = new SQLiteCommand("INSERT INTO WORK (WORK_ID,NAME, PUBLISHER, LOCATION, RELEASE, VOL, NO, PP1, PP2,TYPE, URL)"+
+                comand = new SQLiteCommand("INSERT INTO WORK (WORK_ID,NAME, PUBLISHER, LOCATION, RELEASE, VOL, NO, PP1, PP2,TYPE, URL)" +
             "VALUES (" + w.ID + ",'" + w.name + "','" + w.publisher + "','" + w.location + "','" + w.release + "'," + w.vol + "," + w.no + ",'" + w.pp1 + "','" + w.pp2 + "','" + w.type + "','" + w.url + "')", sqlite);
 
             comand.ExecuteNonQuery();
+            foreach (Author a in w.authors)
+            {
+                addOrEditAuthor(a);
+            }
             refreshForm1();
+        }
+        public void addOrEditAuthor(Author a)
+        {
+
+            SQLiteCommand comand;
+            if (a.AUTHOR_ID != 0)
+                comand = new SQLiteCommand("update AUTHOR set NAME='" + a.name + "',SURNAME='" + a.surname + "',MIDDLE_NAME='" + a.middleName + "' WHERE AUTHOR_ID=" + a.AUTHOR_ID + ";", sqlite);
+            else
+                comand = new SQLiteCommand("INSERT INTO AUTHOR (NAME, SURNAME, MIDDLE_NAME, WORK_ID)" +
+            "VALUES ('" + a.name + "','" + a.surname + "','" + a.middleName + "'," + a.WORK_ID + ")", sqlite);
+
+            comand.ExecuteNonQuery();
         }
         public void openConnection()
         {

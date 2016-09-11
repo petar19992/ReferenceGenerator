@@ -17,9 +17,11 @@ namespace ReferenceGenerator
         public WorkPreview()
         {
             InitializeComponent();
+            Connection.getInstance().workPreview = this;
         }
         public WorkPreview(Work w)
         {
+            Connection.getInstance().workPreview = this;
             InitializeComponent();
             work = w;
             name.Text = work.name;
@@ -48,8 +50,22 @@ namespace ReferenceGenerator
                        journal.Checked = true;
                    }
             url.Text=work.url;
+            foreach (Author a in w.authors)
+            {
+                dataGridView2.Rows.Add(a.name+" "+ a.middleName+" "+a.surname);
+                dataGridView2.Rows[dataGridView2.Rows.Count - 1].Tag = a;
+            }
         }
 
+        public void refreshAuthors()
+        {
+            dataGridView2.Rows.Clear();
+            foreach (Author a in work.authors)
+            {
+                dataGridView2.Rows.Add(a.name + " " + a.middleName + " " + a.surname);
+                dataGridView2.Rows[dataGridView2.Rows.Count - 1].Tag = a;
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
@@ -108,6 +124,24 @@ namespace ReferenceGenerator
             if (site.Checked)
             {
                 myType = TYPE.SITE;
+            }
+        }
+
+        private void authorAdd_Click(object sender, EventArgs e)
+        {
+            AuthorForm af = new AuthorForm(work);
+            af.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            {
+                if (dataGridView2.Rows[i].Selected)
+                {
+                    AuthorForm af = new AuthorForm((Author)dataGridView2.Rows[i].Tag,work);
+                    af.Show();
+                }
             }
         }
     }

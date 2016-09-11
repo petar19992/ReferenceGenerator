@@ -16,3 +16,4 @@ D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\x86\Debug\ReferenceGenerator
 D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\x86\Debug\ReferenceGenerator.csprojResolveAssemblyReference.cache
 D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\x86\Debug\ReferenceGenerator.Form1.resources
 D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\x86\Debug\ReferenceGenerator.WorkPreview.resources
+D:\GIT\VS\ReferenceGenerator\ReferenceGenerator\obj\x86\Debug\ReferenceGenerator.AuthorForm.resources
