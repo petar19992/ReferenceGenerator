@@ -21,6 +21,7 @@ namespace ReferenceGenerator
             Connection.getInstance().openConnection();
             Connection.getInstance().form1 = this;
             getAllWorks();
+            radioButton1.Checked = true;
         }
 
         public void getAllWorks()
@@ -81,6 +82,7 @@ namespace ReferenceGenerator
                     Connection.getInstance().delete((Work)dataGridView1.Rows[i].Tag);
                 }
             }
+            dataGridView2.Rows.Clear();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -156,32 +158,298 @@ namespace ReferenceGenerator
             switch (standard)
             {
                 case  STANDART.IEEE:
+                    generateIEEE();
                     break;
                 case STANDART.APA:
+                    generateAPA();
                     break;
                 case STANDART.CHICAGO:
+                    generateChicago();
                     break;
             }
         }
 
-        private void generateIEEE()
+        private void generateAPA()
         {
+            output.Text = "";
+            int counter = 1;
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 if (dataGridView1.Rows[i].Selected)
                 {
+                    output.Text += " [" + (counter++) + "]    ";
                     Work w = (Work)dataGridView1.Rows[i].Tag;
-                    for (int j = 0; j < w.authors.Count; j++)
+                    if (w.type.Equals("BOOK"))
                     {
-                        Author a = w.authors[j];
-                        if (j == w.authors.Count - 1)
-                            output.Text += " and ";
-                        output.Text += a.name+" "+a.middleName+" "+a.surname+" ,";
+                        showAuthors(w);
+                        output.Text += " (";
+                        showRelease(w);
+                        output.Text += ")";
+                        output.Text += ".";
+                        showBookName(w);
+                        output.Text += ",";
+                        showPublisher(w);
+                        output.Text += ",";
+                        showLocation(w);
+                        output.Text += ".";
                     }
+                    else
+                        if (w.type.Equals("SITE"))
+                        {
+                            showAuthors(w);
+                            output.Text += "("; showRelease(w); output.Text += ")    ";
+                            output.Text += "The ";
+                            showBookName(w);
+                            output.Text += " Online. ";
+                            showUlr(w);
+                            output.Text += ".";
+                        }
+                        else if (w.type.Equals("JOURNAL"))
+                        {
+                            showAuthors(w);
+                            output.Text += "(";
+                            showRelease(w);
+                            output.Text += ")";
+                            output.Text += ".";
+                            showBookName(w);
+                            output.Text += ",";
+                            showPublisher(w);
+                            output.Text += ",";
+                            showVol(w);
+                            showNo(w);
+                            showPP(w);
+                            output.Text += ".";
+                        }
                     output.Text += "";
+                    output.Text += "\n\t";
                 }
             }
         }
 
+        private void generateChicago()
+        {
+            output.Text = "";
+            int counter = 1;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (dataGridView1.Rows[i].Selected)
+                {
+                    output.Text += " [" + (counter++) + "]    ";
+                    Work w = (Work)dataGridView1.Rows[i].Tag;
+                    if (w.type.Equals("BOOK"))
+                    {
+                        showAuthorsChicago(w);
+                        output.Text += ",";
+                        showBookName(w);
+                        output.Text += ",";
+                        showPublisher(w);
+                        output.Text += ",";
+                        showLocation(w);
+                        output.Text += ",";
+                        showRelease(w);
+                        output.Text += ".";
+                    }
+                    else
+                        if (w.type.Equals("SITE"))
+                        {
+                            showAuthorsChicago(w);
+                            output.Text += " ("; showRelease(w); output.Text += ")    ";
+                            output.Text += "The ";
+                            showBookName(w);
+                            output.Text += " website.[Online]. Available: ";
+                            showUlr(w);
+                        }
+                        else if (w.type.Equals("JOURNAL"))
+                        {
+                            showAuthorsChicago(w);
+                            showBookName(w);
+                            output.Text += ",";
+                            showPublisher(w);
+                            output.Text += ",";
+                            showVolChicago(w);
+                            showNoChicago(w);
+                            showPPChicago(w);
+                            showRelease(w);
+                            output.Text += ".";
+                        }
+                    output.Text += "";
+                    output.Text += "\n\t";
+                }
+            }
+        }
+        private void generateIEEE()
+        {
+            output.Text = "";
+            int counter = 1;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (dataGridView1.Rows[i].Selected)
+                {
+                    output.Text += "[" + (counter++) + "]    ";
+                    Work w = (Work)dataGridView1.Rows[i].Tag;
+                    if (w.type.Equals("BOOK"))
+                    {
+                        showAuthors(w);
+                        showBookName(w);
+                        output.Text += ",";
+                        showPublisher(w);
+                        output.Text += ",";
+                        showLocation(w);
+                        output.Text += ",";
+                        showRelease(w);
+                        output.Text += ".";
+                    }
+                    else
+                        if (w.type.Equals("SITE"))
+                    {
+                        showAuthors(w);
+                        output.Text += "("; showRelease(w); output.Text += ")    ";
+                        output.Text += "The ";
+                        showBookName(w);
+                        output.Text += " website.[Online]. Available: ";
+                        showUlr(w);
+                    }
+                        else if (w.type.Equals("JOURNAL"))
+                        {
+                            showAuthors(w);
+                            showBookName(w);
+                            output.Text += ",";
+                            showPublisher(w);
+                            output.Text += ",";
+                            showVol(w);
+                            showNo(w);
+                            showPP(w);
+                            showRelease(w);
+                            output.Text += ".";
+                        }
+                    output.Text += "";
+                    output.Text += "\n\t";
+                }
+            }
+        }
+
+
+        private void showAuthors(Work w)
+        {
+            for (int j = 0; j < w.authors.Count; j++)
+            {
+                Author a = w.authors[j];
+                if (j == w.authors.Count - 1&& j!=0)
+                    output.Text += " and ";
+                else if(j!=0)
+                    output.Text += ", ";
+                if (!a.name.Equals(""))
+                {
+                    output.Text += " " + a.name;
+                }
+                if (!a.middleName.Equals(""))
+                {
+                    output.Text += " " + a.middleName ;
+                }
+                if (!a.surname.Equals(""))
+                {
+                    output.Text += " " + a.surname;
+                }
+                
+            }
+        }
+        private void showAuthorsChicago(Work w)
+        {
+            for (int j = 0; j < w.authors.Count; j++)
+            {
+                Author a = w.authors[j];
+                if (j == w.authors.Count - 1 && j != 0)
+                    output.Text += " and ";
+                else if (j != 0)
+                    output.Text += ", ";
+                if (!a.surname.Equals(""))
+                {
+                    output.Text += " " + a.surname+", ";
+                }
+                if (!a.middleName.Equals(""))
+                {
+                    output.Text += " " + a.middleName.Substring(0,1)+".";
+                }
+                if (!a.name.Equals(""))
+                {
+                    output.Text += " " + a.name.Substring(0, 1) + ".";
+                }
+            }
+        }
+
+        private void showBookName(Work w)
+        {
+            output.Text += " " + w.name;
+        }
+        private void showPublisher(Work w)
+        {
+            output.Text += " " + w.publisher;
+        }
+        private void showLocation(Work w)
+        {
+            output.Text += " " + w.location;
+        }
+
+        private void showRelease(Work w)
+        {
+            output.Text += " " + w.release;
+        }
+        private void showVol(Work w)
+        {
+            if (w.vol != 0)
+            {
+                output.Text += "Vol. " + w.vol+ ",";
+            }
+        }
+        private void showVolChicago(Work w)
+        {
+            if (w.vol != 0)
+            {
+                output.Text += "Volume " + w.vol + ",";
+            }
+        }
+        private void showNo(Work w)
+        {
+            if (w.no != 0)
+            {
+                output.Text += "No. " + w.no + ",";
+            }
+        }
+        private void showNoChicago(Work w)
+        {
+            if (w.no != 0)
+            {
+                output.Text += "Number " + w.no + ",";
+            }
+        }
+        private void showPP(Work w)
+        {
+            if (!w.pp1.Equals(""))
+            {
+                output.Text += "pp. " + w.pp1 ;
+                if (!w.pp2.Equals(""))
+                {
+                    output.Text += "- " + w.pp2+",";
+                }
+            }
+        }
+        private void showPPChicago(Work w)
+        {
+            if (!w.pp1.Equals(""))
+            {
+                output.Text += "pg. " + w.pp1;
+                if (!w.pp2.Equals(""))
+                {
+                    output.Text += "- " + w.pp2 + ",";
+                }
+            }
+        }
+        private void showUlr(Work w)
+        {
+            if (!w.url.Equals(""))
+            {
+                output.Text +=" "+ w.url;
+            }
+        }
     }
 }

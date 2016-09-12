@@ -113,10 +113,11 @@
             // 
             // pp1
             // 
-            this.pp1.Location = new System.Drawing.Point(73, 117);
+            this.pp1.Location = new System.Drawing.Point(73, 253);
             this.pp1.Name = "pp1";
             this.pp1.Size = new System.Drawing.Size(63, 20);
             this.pp1.TabIndex = 6;
+            this.pp1.Visible = false;
             // 
             // vol
             // 
@@ -124,6 +125,7 @@
             this.vol.Name = "vol";
             this.vol.Size = new System.Drawing.Size(120, 20);
             this.vol.TabIndex = 7;
+            this.vol.Visible = false;
             // 
             // no
             // 
@@ -131,13 +133,14 @@
             this.no.Name = "no";
             this.no.Size = new System.Drawing.Size(120, 20);
             this.no.TabIndex = 8;
+            this.no.Visible = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.site);
             this.groupBox1.Controls.Add(this.journal);
             this.groupBox1.Controls.Add(this.book);
-            this.groupBox1.Location = new System.Drawing.Point(13, 152);
+            this.groupBox1.Location = new System.Drawing.Point(13, 117);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(147, 95);
             this.groupBox1.TabIndex = 9;
@@ -182,17 +185,19 @@
             // 
             // pp2
             // 
-            this.pp2.Location = new System.Drawing.Point(183, 117);
+            this.pp2.Location = new System.Drawing.Point(183, 253);
             this.pp2.Name = "pp2";
             this.pp2.Size = new System.Drawing.Size(59, 20);
             this.pp2.TabIndex = 10;
+            this.pp2.Visible = false;
             // 
             // url
             // 
-            this.url.Location = new System.Drawing.Point(12, 253);
+            this.url.Location = new System.Drawing.Point(12, 218);
             this.url.Name = "url";
             this.url.Size = new System.Drawing.Size(100, 20);
             this.url.TabIndex = 11;
+            this.url.Visible = false;
             // 
             // label1
             // 
@@ -233,29 +238,32 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 120);
+            this.label5.Location = new System.Drawing.Point(7, 256);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 16;
             this.label5.Text = "Pages from";
+            this.label5.Visible = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(149, 120);
+            this.label6.Location = new System.Drawing.Point(149, 256);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 13);
             this.label6.TabIndex = 17;
             this.label6.Text = "To";
+            this.label6.Visible = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(122, 254);
+            this.label7.Location = new System.Drawing.Point(122, 219);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(18, 13);
             this.label7.TabIndex = 18;
             this.label7.Text = "url";
+            this.label7.Visible = false;
             // 
             // label8
             // 
@@ -265,6 +273,7 @@
             this.label8.Size = new System.Drawing.Size(24, 13);
             this.label8.TabIndex = 19;
             this.label8.Text = "vol.";
+            this.label8.Visible = false;
             // 
             // label9
             // 
@@ -274,6 +283,7 @@
             this.label9.Size = new System.Drawing.Size(19, 13);
             this.label9.TabIndex = 20;
             this.label9.Text = "no";
+            this.label9.Visible = false;
             // 
             // dataGridView2
             // 
@@ -322,6 +332,7 @@
             this.button2.TabIndex = 24;
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // WorkPreview
             // 

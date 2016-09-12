@@ -37,6 +37,7 @@ namespace ReferenceGenerator
                 author = new Author();
                 w.authors.Add(author);
             }
+            author.WORK_ID = w.ID;
             author.name = textBox1.Text;
             author.surname = textBox2.Text;
             author.middleName = textBox3.Text;
